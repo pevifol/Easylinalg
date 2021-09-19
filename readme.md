@@ -3,4 +3,8 @@ A ideia é que a gente pode reunir os problemas nos issues, e montar alguma cois
 Se eu não fiz nada de errado, todo mundo pode editar e mergir livremente, então vocês são livres pra editar o que quiserem. Tentem levantar algum problema nos issues
 pra testar, ou pedir um pull requests de qualquer coisa. 
 Qualquer problema, me passem um email.
--Ruan felipe, ruanfelipe@matematica.ufrj.br 
+-Ruan felipe, ruanfelipe@matematica.ufrj.br
+
+
+
+19/09/2021 - Atualmente para executar utilize: $julia .\Tests\Signal\SignalTeste.jl

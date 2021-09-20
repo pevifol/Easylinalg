@@ -22,6 +22,31 @@ function SignalBuild(x, y )
     return Signal(x, y)
 end
 
+function Draw(A::Vector{Signal}, separate = false)
+    #     n,m=size(A)
+        m=size(A)[1]
+        plotsX = []
+        plotsY = []
+        
+        for i=1:m
+            if(separate)
+                Plots.display(plot(A[i].X, A[i].Y ) )
+            else
+                append!(plotsX, [A[i].X])
+                append!(plotsY, [A[i].Y])
+                end
+        end
+        
+        if(size(plotsY)[1] > 0 )
+            p = plot(plotsX[1], plotsY[1])
+            for i=2:size(plotsY)[1]
+                plot!(p, plotsX[i], plotsY[i])
+            end
+            
+            return p
+        end
+    end
+
 struct Zero end   #zero Matrix
 
 

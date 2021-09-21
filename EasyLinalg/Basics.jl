@@ -1,5 +1,3 @@
-
-
 numberTypes = Union{Integer, Float64}
 types = Union{Signal}
 

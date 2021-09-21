@@ -47,8 +47,6 @@ function Draw(A::Vector{Signal}, separate = false)
         end
     end
 
-struct Zero end   #zero Matrix
-
 
 begin 
     import Base: +,*,-,^,/,convert,promote_rule,size,reshape,promote,zero,one,iterate,length,abs2,copy,adjoint,vect, promote_typeof
@@ -62,7 +60,7 @@ begin
     
     /(y::Real,x::Signal) = Signal(x.X, x.Y / y)
     /(x::Signal,y::Real) = /(y::Real,x::Signal) 
-    
+
 
     # adicionando safecheck na expressão [A, B]
     function Base.vect(K::Signal...)
@@ -83,12 +81,5 @@ begin
 
     Base.setindex!(x::Signal, v, i::Int) = (x.Y[i] = v)
     
-    Base.zero(::Type{Any})= Zero()
-    +(::Zero, ::Zero) = Zero()
-    -(::Zero, A) = -A
-    +(::Zero, A) = A
-    +(A,::Zero) = A
-    *(::Zero, ::Zero) = Zero()
-    *(X, ::Zero) = Zero()
     
 end

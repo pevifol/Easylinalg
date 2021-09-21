@@ -39,39 +39,3 @@ include("../../EasyLinalg/Basics.jl")
         @test [Signal([1.0, 2.0, 3.0], [1.0, 2.0, 3.0]), Signal([1.0, 2.0, 3.0], [4.0, 5.0, 6.0])] \ (([ Signal([1.0, 2.0, 3.0], [1.0, 2.0, 3.0]), Signal([1.0, 2.0, 3.0], [4.0, 5.0, 6.0]) ]) * [ 2.0 3.0; 4.0 5.0 ]) ≈ [ 2.0 3.0; 4.0 5.0 ]
     end;
 end;    
-
-
-
-
-
-# B = SignalBuildU(x -> sin(4.0, * x), -10.0:0.1:10.0)
-# C = SignalBuildU(cos, -10.0:0.1:10.0)
-# A = SignalBuildU(sin, -10.0:0.1:10.0)
-
-
-# D = [A, B]
-# s = size(D)
-
-# # A=convex_combination([A, B], 0.1)
-# # t = [ 2.0, 3.0, ; 4.0, 5.0, ]
-# # t[:,1]
-
-# C = [ A, B ] * [ 2.0, 3.0; 4.0, 5.0 ] # TESTE PARA VALIDAR lINEARSYSTEM(A,B,C)
-# D = [A, B]
-# t = [ 2.0, 3.0; 4.0, 5.0, ]
-
-# E = toNumberMatrix([ A, B ]) * [ 2.0, 3.0; 4.0, 5.0 ]
-# G = toNumberMatrix([ A, B ])
-
-
-# H = G\E
-
-# t1 = [1, 2]
-# t2 = [1,3]
-# toNumberVector(Signal(t2, t1))
-
-# Signal(B.X, toNumberVector(B)) 
-
-# print( D\C)
-
-# lu(toNumberMatrix(D))

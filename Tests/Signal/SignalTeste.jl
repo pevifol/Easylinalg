@@ -23,7 +23,6 @@ include("../../EasyLinalg/Basics.jl")
         @test Signal([1.0, 2.0, 3.0], [1.0, 2.0, 3.0]) * 2 == Signal([1.0, 2.0, 3.0], [2.0, 4.0, 6.0])
         @test 2 * Signal([1.0, 2.0, 3.0], [1.0, 2.0, 3.0]) == Signal([1.0, 2.0, 3.0], [2.0, 4.0, 6.0])
         @test Signal([1.0, 2.0, 3.0], [1.0, 2.0, 3.0]) / 2 == Signal([1.0, 2.0, 3.0], [0.5, 1.0, 1.5])
-        @test 2 / Signal([1.0, 2.0, 3.0], [1.0, 2.0, 3.0]) == Signal([1.0, 2.0, 3.0], [0.5, 1.0, 1.5])
     end;
     @testset "Safe Checks" begin
         @test_throws ErrorException [Signal([1.0, 2.0, 3.0], [1.0, 2.0, 3.0]), Signal([4.0, 5.0, 6.0], [4.0, 5.0, 6.0]) ]

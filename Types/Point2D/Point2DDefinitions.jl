@@ -4,7 +4,6 @@ using Images # read and show images, more info here: https://github.com/JuliaIma
 using JLD
 include("../Zero/ZeroDefinitions.jl")
 
-numberTypes = Union{Integer, Float64}
 
 struct Point2D <: AbstractVector{Number}
     D
@@ -22,7 +21,7 @@ begin
     *(y::Real,x::Point2D) = Point2D([x.D[1] * y, x.D[2] * y])
     *(x::Point2D,y::Real) = *(y::Real,x::Point2D)
     
-    /(y::Real,x::Point2D) = Point2D([x.D[1] * y, x.D[2] * y])
+    /(y::Real,x::Point2D) = Point2D([x.D[1] / y, x.D[2] / y])
 
     
     size(x::Point2D) = size(x.D)

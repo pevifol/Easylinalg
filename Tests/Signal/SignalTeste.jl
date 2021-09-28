@@ -8,7 +8,6 @@ include("../../Types/Signal/SignalDefinitions.jl")
 include("../../EasyLinalg/Basics.jl")
 
 
-
 @testset verbose = true "Signal Testes" begin
     @testset "Build Ops" begin
         # test construction function

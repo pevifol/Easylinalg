@@ -1,15 +1,26 @@
 include("../Types/Signal/SignalDefinitions.jl")
 include("../Types/Point2D/Point2DDefinitions.jl")
+include("../Types/Arrow2D/Arrow2DDefinitions.jl")
+include("../Types/Arrow3D/Arrow3DDefinitions.jl")
 
+# É necessário acrescentar types conforme criam-se novos tipos
+types = Union{Signal, Point2D, Arrow2D, Arrow3D}
 numberTypes = Union{Integer, Float64}
-types = Union{Signal, Point2D}
 
 
 function convex_combination(B,increment)
     x=1:-increment:0
     y=0:increment:1
     C=[x'; y']
+    # println("B:")
+    # display(B)
+    # display(size(B))
+    # println("\nC:")
+    # display(C)
+    # display(size(C))
+    # println()
     A = B * C
+    # display(A)
     return A
 end
 
@@ -32,14 +43,42 @@ function *( S::Vector{<:types}, w::Matrix{<:numberTypes})
     T = toNumberMatrix(S)
     T = T * w
     s = size(T)[2]
+    # println("\nElement:")
+    # display(element)
+    # println("\nSize:")
+    # display(s)
+    # println()
+    # println("\nType:")
+    # display(type)
+    # println()
+    # println("T:")
+    # display(T)
+    # display(size(T))
+    # println("\nK:")
+    # display(K)
+    # display(size(K))
+    # println()
+    # println("S:")
+    # display(S)
+    # display(size(S))
+    # println("\nw:")
+    # display(w)
+    # display(size(w))
+    # println()
     for i=1:s
         for j=1:size(T)[1]
             K[i][j] = T[j,i]
+            # println("i, j, K durante ", i, j, K)
+            # println("info T ", T[j,i])
         end
         if( i < s)
             push!(K, deepcopy(element))
         end
     end
+    # println("\nK final:")
+    # display(K)
+    # display(size(K))
+    # println()
     return K
 end
     

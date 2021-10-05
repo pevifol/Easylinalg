@@ -1,11 +1,12 @@
 include("../Types/Signal/SignalDefinitions.jl")
 include("../Types/Point2D/Point2DDefinitions.jl")
+include("../Types/Point3D/Point3DDefinitions.jl")
 include("../Types/Arrow2D/Arrow2DDefinitions.jl")
 include("../Types/Arrow3D/Arrow3DDefinitions.jl")
 include("../Types/Image/ImageDefinitions.jl")
 
 # É necessário acrescentar types conforme criam-se novos tipos
-types = Union{Signal, Point2D, Arrow2D, Arrow3D}
+types = Union{Signal, Point2D, Point3D, Arrow2D, Arrow3D}
 special_types = Union{Image}
 numberTypes = Union{Integer, Float64}
 

@@ -14,7 +14,7 @@ include("../../EasyLinalg/Basics.jl")
     end;
     @testset "Base Ops" begin
         @test Arrow3D(1,2,3) + Arrow3D(3,4,5) == Arrow3D(4,6,8)
-        @test Arrow3D(4,6,7) - Arrow3D(3,4,5) == Arrow3D(1,2,2)
+        @test Arrow3D(4,6,8) - Arrow3D(3,4,5) == Arrow3D(1,2,3)
         @test Arrow3D(1,2,3) * 2 == Arrow3D(2,4,6)
         @test 2 * Arrow3D(1,2,3) == Arrow3D(2,4,6)
         @test Arrow3D(2,4,6) / 2 == Arrow3D(1,2,3)

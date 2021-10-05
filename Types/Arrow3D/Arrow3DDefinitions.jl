@@ -45,7 +45,7 @@ begin
     
     # addition rule 
     +(a::Arrow3D,b::Arrow3D) = Arrow3D(a.i+b.i, a.j+b.j, a.k+b.k)
-    -(a::Arrow3D,b::Arrow3D) =  Arrow3D(a.i-b.i, a.j-b.j, a.j-b.j)
+    -(a::Arrow3D,b::Arrow3D) =  Arrow3D(a.i-b.i, a.j-b.j, a.k-b.k)
 
     # multiplying by scalar
     *(b::Real,a::Arrow3D) = Arrow3D(a.i * b, a.j * b, a.k * b)

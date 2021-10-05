@@ -45,12 +45,22 @@ function Draw(A::Vector{Signal}, separate = false)
 
 end
 
+function dotProduct(x::Signal,y::Signal)
+    sum = 0
+    for i=1:size(x.Y)[1]
+        sum += x.Y[i] * y.Y[i]
+    end
+    return sum
+end
 
 begin 
     import Base: +,*,-,^,/,convert,promote_rule,size,reshape,promote,zero,one,iterate,length,abs2,copy,adjoint,vect, promote_typeof
     # addition rule 
     +(x::Signal,y::Signal) = y.X == x.X ? Signal(x.X, x.Y + y.Y) : error("X array must be equal for every entry")  
-    -(x::Signal,y::Signal) = y.X == x.X ? Signal(x.X, x.Y - y.Y) : error("X array must be equal for every entry")  
+    -(x::Signal,y::Signal) = y.X == x.X ? Signal(x.X, x.Y - y.Y) : error("X array must be equal for every entry")
+
+    # dot product
+    *(x::Signal,y::Signal) = y.X == x.X ? dotProduct(x,y) : error("X array must be equal for every entry")
 
     # multiplying by scalar
     *(y::Real,x::Signal) = Signal(x.X, x.Y * y)

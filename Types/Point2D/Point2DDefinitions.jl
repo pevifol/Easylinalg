@@ -6,32 +6,53 @@ include("../Zero/ZeroDefinitions.jl")
 
 
 struct Point2D <: AbstractVector{Number}
-    D
+    x
+    y
 end
 
+function Draw(A::Vector{Point2D}, separate = false)
+    m=size(A)[1]
+    plotsX = []
+    plotsY = []
+    for i=1:m
+        append!(plotsX, [[A[i].x]])
+        append!(plotsY, [[A[i].y]])
+    end
+    
+    if(!separate)
+        res = []
+        p = plot!(plotsX[1], plotsY[1], seriestype = "scatter", label="")
+        for i=2:size(plotsY)[1]
+            plot!(p, plotsX[i], plotsY[i], seriestype = "scatter" , label="")
+        end
+        return p
+    end
+    
+    return plot(plotsX,plotsY, seriestype = "scatter" , layout = (m, 1), label="")
+
+end
 
 begin 
     import Base: +,*,-,^,/,convert,promote_rule,size,reshape,promote,zero,one,iterate,length,abs2,copy,adjoint,vect, promote_typeof
     
     # addition rule 
-    +(x::Point2D,y::Point2D) = Point2D([x.D[1]+y.D[1], x.D[2]+y.D[2]])
-    -(x::Point2D,y::Point2D) =  Point2D([x.D[1]-y.D[1], x.D[2]-y.D[2]])
+    +(a::Point2D,b::Point2D) = Point2D(a.x+b.x, a.y+b.y)
+    -(a::Point2D,b::Point2D) =  Point2D(a.x-b.x, a.y-b.y)
 
     # multiplying by scalar
-    *(y::Real,x::Point2D) = Point2D([x.D[1] * y, x.D[2] * y])
-    *(x::Point2D,y::Real) = *(y::Real,x::Point2D)
+    *(b::Real,a::Point2D) = Point2D(a.x * b, a.y * b)
+    *(a::Point2D,b::Real) = *(b::Real,a::Point2D)
     
-    /(y::Real,x::Point2D) = Point2D([x.D[1] / y, x.D[2] / y])
+    /(b::Real,a::Point2D) = Point2D(a.x / b, a.y / b)
 
     
-    size(x::Point2D) = size(x.D)
+    size(a::Point2D) = size([a.x,a.y])
 
-    Base.copy(x::Point2D) = Point2D(deepcopy(x.D))
-    Base.deepcopy(x::Point2D) = Point2D(deepcopy(x.D))
+    Base.copy(a::Point2D) = Point2D( deepcopy(a.x), deepcopy(a.y) )
+    Base.deepcopy(a::Point2D) = Point2D( deepcopy(a.x), deepcopy(a.y) )
 
-    Base.getindex(x::Point2D, i::Int) = i > 2 || i < 1 ? error("Point2D can only have size 2") :  x.D[i]
-
-    Base.setindex!(x::Point2D, v, i::Int) = i > 2 || i < 1 ? error("Point2D can only have size 2") : (x.D[i] = v)
-    
+    Base.getindex(a::Point2D, i::Int) = i > 2 || i < 1 ? error("Point2D can only have size 2") :  [a.x,a.y][i]
+    Base.setindex!(a::Point2D, v, i::Int) = i > 2 || i < 1 ? error("Point2D can only have size 2") : 
+        (i == 1 ? (a.x = v) : (a.y = v) )
     
 end

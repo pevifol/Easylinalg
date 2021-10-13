@@ -1,3 +1,8 @@
+name = "EasyLinalg"
+uuid = "e78602dc-67f4-4beb-84cc-ec93072baee7"
+authors = ["Bruno Hryniewicz <brunohry@dcc.ufrj.br>"]
+version = "0.1.0"
+
 [deps]
 Images = "916415d5-f1e6-5110-898d-aaa5f9f070e0"
-LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"

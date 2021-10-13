@@ -1,5 +1,9 @@
 # EasyLinalg
 
+## To install
+
+Julia> ] add https://github.com/pevifol/Easylinalg
+
 ## To develop
 
 active the package.

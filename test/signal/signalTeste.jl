@@ -1,13 +1,3 @@
-
-using LinearAlgebra
-using Plots
-using Images # read and show images, more info here: https://github.com/JuliaImages/Images.jl
-using JLD
-using Test
-include("../../Types/Signal/SignalDefinitions.jl")
-include("../../EasyLinalg/Basics.jl")
-
-
 @testset verbose = true "Signal Testes" begin
     @testset "Build Ops" begin
         # test construction function
@@ -22,6 +12,7 @@ include("../../EasyLinalg/Basics.jl")
         @test Signal([1.0, 2.0, 3.0], [1.0, 2.0, 3.0]) * 2 == Signal([1.0, 2.0, 3.0], [2.0, 4.0, 6.0])
         @test 2 * Signal([1.0, 2.0, 3.0], [1.0, 2.0, 3.0]) == Signal([1.0, 2.0, 3.0], [2.0, 4.0, 6.0])
         @test Signal([1.0, 2.0, 3.0], [1.0, 2.0, 3.0]) / 2 == Signal([1.0, 2.0, 3.0], [0.5, 1.0, 1.5])
+        @test ( Signal([1.0, 2.0, 3.0], [1.0, 2.0, 3.0]) * Signal([1.0, 2.0, 3.0], [4.0, 5.0, 6.0]) ) == 32
     end;
     @testset "Safe Checks" begin
         @test_throws ErrorException [Signal([1.0, 2.0, 3.0], [1.0, 2.0, 3.0]), Signal([4.0, 5.0, 6.0], [4.0, 5.0, 6.0]) ]

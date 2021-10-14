@@ -1,9 +1,3 @@
-using LinearAlgebra
-using Plots
-using Images # read and show images, more info here: https://github.com/JuliaImages/Images.jl
-using JLD
-include("../Zero/ZeroDefinitions.jl")
-
 struct Signal <: AbstractVector{Number}
     X
     Y
@@ -23,36 +17,44 @@ function SignalBuild(x, y )
 end
 
 function Draw(A::Vector{Signal}, separate = false)
-    #     n,m=size(A)
-        m=size(A)[1]
-        plotsX = []
-        plotsY = []
-        
-        for i=1:m
-            if(separate)
-                Plots.display(plot(A[i].X, A[i].Y ) )
-            else
-                append!(plotsX, [A[i].X])
-                append!(plotsY, [A[i].Y])
-                end
-        end
-        
-        if(size(plotsY)[1] > 0 )
-            p = plot(plotsX[1], plotsY[1])
-            for i=2:size(plotsY)[1]
-                plot!(p, plotsX[i], plotsY[i])
-            end
-            
-            return p
-        end
+    m=size(A)[1]
+    plotsX = []
+    plotsY = []
+    
+    for i=1:m
+        append!(plotsX, [A[i].X])
+        append!(plotsY, [A[i].Y])
     end
 
+    if(!separate)
+        p = plot(plotsX[1], plotsY[1])
+        for i=2:size(plotsY)[1]
+            plot!(p, plotsX[i], plotsY[i])
+        end
+        
+        return p
+    end
+
+    return plot(plotsX,plotsY, layout = (size(plotsY)[1], 1))
+
+end
+
+function dotProduct(x::Signal,y::Signal)
+    sum = 0
+    for i=1:size(x.Y)[1]
+        sum += x.Y[i] * y.Y[i]
+    end
+    return sum
+end
 
 begin 
     import Base: +,*,-,^,/,convert,promote_rule,size,reshape,promote,zero,one,iterate,length,abs2,copy,adjoint,vect, promote_typeof
     # addition rule 
     +(x::Signal,y::Signal) = y.X == x.X ? Signal(x.X, x.Y + y.Y) : error("X array must be equal for every entry")  
-    -(x::Signal,y::Signal) = y.X == x.X ? Signal(x.X, x.Y - y.Y) : error("X array must be equal for every entry")  
+    -(x::Signal,y::Signal) = y.X == x.X ? Signal(x.X, x.Y - y.Y) : error("X array must be equal for every entry")
+
+    # dot product
+    *(x::Signal,y::Signal) = y.X == x.X ? dotProduct(x,y) : error("X array must be equal for every entry")
 
     # multiplying by scalar
     *(y::Real,x::Signal) = Signal(x.X, x.Y * y)

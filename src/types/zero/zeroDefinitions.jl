@@ -1,6 +1,3 @@
-using LinearAlgebra
-using JLD
-
 
 struct Zero end   #zero Matrix
 
@@ -15,6 +12,6 @@ begin
     +(A,::Zero) = A
     *(::Zero, ::Zero) = Zero()
     *(X, ::Zero) = Zero()
-   
+
     
 end

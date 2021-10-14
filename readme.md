@@ -8,7 +8,7 @@ or
 
 using Pkg
 
-Pkg.add("https://github.com/pevifol/Easylinalg")
+Pkg.add(url="https://github.com/pevifol/Easylinalg")
 
 ## To develop
 

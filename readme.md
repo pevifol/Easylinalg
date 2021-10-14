@@ -7,6 +7,7 @@ Julia> ] add https://github.com/pevifol/Easylinalg
 or
 
 using Pkg
+
 Pkg.add("https://github.com/pevifol/Easylinalg")
 
 ## To develop

@@ -1,4 +1,5 @@
 module EasyLinalg
+    using Plots
 
     include(joinpath("types", "zero", "zeroDefinitions.jl"))
     include(joinpath("types", "signal", "signalDefinitions.jl"))

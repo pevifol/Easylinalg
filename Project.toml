@@ -1,8 +1,9 @@
 name = "EasyLinalg"
 uuid = "e78602dc-67f4-4beb-84cc-ec93072baee7"
 authors = ["Bruno Hryniewicz <brunohry@dcc.ufrj.br>"]
-version = "0.1.0"
+version = "0.1.1"
 
 [deps]
 Images = "916415d5-f1e6-5110-898d-aaa5f9f070e0"
+Plots = "91a5bcdd-55d7-5caf-9e0b-520d859cae80"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"

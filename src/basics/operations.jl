@@ -7,8 +7,8 @@ include(joinpath("..", "types", "Arrow3D", "Arrow3DDefinitions.jl"))
 include(joinpath("..", "types", "Image", "ImageDefinitions.jl"))
 
 # É necessário acrescentar types conforme criam-se novos tipos
-types = Union{Signal, Point2D, Point3D, Arrow2D, Arrow3D}
-special_types = Union{Image}
+types = Union{Signal, Point2D, Point3D, Arrow2D, Arrow3D, Image}
+# special_types = Union{Image}
 numberTypes = Union{Integer, Float64}
 
 
@@ -102,9 +102,10 @@ function toNumberMatrix(S::Vector{<:types})
 end
 
 function toNumberVector(S::types)
-    K = zeros(size(S)[1])
+    type = typeof(getindex(S, 1))
+    K = Vector{type}()
     for j=1:size(S)[1]
-        K[j] = getindex(S, j)
+        push!(K, getindex(S, j))
     end
     return K
 end

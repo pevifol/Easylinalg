@@ -1,5 +1,5 @@
-using Images # read and show images, more info here: https://github.com/JuliaImages/Images.jl
-include(joinpath("..", "zero", "zeroDefinitions.jl"))
+using Images # read and show Images, more info here: https://github.com/JuliaImages/Images.jl
+
 
 struct Image <:AbstractVector{Vector{RGB}}
     I
@@ -7,6 +7,11 @@ end
 
 function draw(A::Image)
     display(ToNativeImage(A))
+end
+
+function draw(S::Vector{<:Image})
+    K = toNativeVector(S)
+    display(K)
 end
 
 begin 
@@ -21,10 +26,19 @@ begin
         end
         return Image(vect)
     end
+    
+    function Image(img::Matrix{RGB{Float64}})
+        vect = Vector{Vector{RGB}}()
+        for i in 1:size(img, 2)
+           push!(vect, img[:,i] )
+        end
+        return Image(vect)
+    end
 
     function ToNativeImage(img::Image)
         return reduce(hcat,img.I)
     end
+    
     # addition rule 
     +(x::Image,y::Image) = Image(x.I + y.I)
     -(x::Image,y::Image) =  Image(x.I - y.I)

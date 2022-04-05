@@ -16,16 +16,7 @@ function convex_combination(B,increment)
     x=1:-increment:0
     y=0:increment:1
     C=[x'; y']
-    # println("B:")
-    # display(B)
-    # display(size(B))
-    # println("\nC:")
-    # display(C)
-    # display(size(C))
-    # println()
-    println(typeof(C))
     A = B * C
-    # display(A)
     return A
 end
 

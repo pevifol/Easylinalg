@@ -4,34 +4,6 @@ mutable struct Arrow3D <: AbstractVector{Number}
     k
 end
 
-function Draw(A::Vector{Arrow3D}, separate = false)
-    m=size(A)[1]
-    plotsX = []
-    plotsY = []
-    plotsZ = []
-    for i=1:m
-        append!(plotsX, [[0, A[i].i]])
-        append!(plotsY, [[0, A[i].j]])
-        append!(plotsZ, [[0, A[i].k]])
-    end
-
-    # print("draw Arrow3D\n")
-    # print(m)
-    # print(plotsX)
-    # print(plotsY)
-    
-    if(!separate)
-        res = []
-        p = plot!(plotsX[1], plotsY[1], plotsZ[1], arrow=true, label="")
-        for i=2:size(plotsY)[1]
-            plot!(p, plotsX[i], plotsY[i], plotsZ[i], arrow=true, label="")
-        end
-        return p
-    end
-    
-    return plot(plotsX,plotsY, arrow=true, layout = (m, 1), label="")
-
-end
 
 begin 
     import Base: +,*,-,^,/,convert,promote_rule,size,reshape,promote,zero,one,iterate,length,abs2,copy,adjoint,vect, promote_typeof

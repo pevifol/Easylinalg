@@ -16,28 +16,6 @@ function SignalBuild(x, y )
     return Signal(x, y)
 end
 
-function Draw(A::Vector{Signal}, separate = false)
-    m=size(A)[1]
-    plotsX = []
-    plotsY = []
-    
-    for i=1:m
-        append!(plotsX, [A[i].X])
-        append!(plotsY, [A[i].Y])
-    end
-
-    if(!separate)
-        p = plot(plotsX[1], plotsY[1])
-        for i=2:size(plotsY)[1]
-            plot!(p, plotsX[i], plotsY[i])
-        end
-        
-        return p
-    end
-
-    return plot(plotsX,plotsY, layout = (size(plotsY)[1], 1))
-
-end
 
 function dotProduct(x::Signal,y::Signal)
     sum = 0

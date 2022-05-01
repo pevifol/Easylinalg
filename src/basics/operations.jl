@@ -47,42 +47,32 @@ function *( S::Vector{<:types}, w::Matrix{<:numberTypes})
     T = toNumberMatrix(S)
     T = T * w
     s = size(T)[2]
-    # println("\nElement:")
-    # display(element)
-    # println("\nSize:")
-    # display(s)
-    # println()
-    # println("\nType:")
-    # display(type)
-    # println()
-    # println("T:")
-    # display(T)
-    # display(size(T))
-    # println("\nK:")
-    # display(K)
-    # display(size(K))
-    # println()
-    # println("S:")
-    # display(S)
-    # display(size(S))
-    # println("\nw:")
-    # display(w)
-    # display(size(w))
-    # println()
     for i=1:s
         for j=1:size(T)[1]
             K[i][j] = T[j,i]
-            # println("i, j, K durante ", i, j, K)
-            # println("info T ", T[j,i])
         end
         if( i < s)
             push!(K, deepcopy(element))
         end
     end
-    # println("\nK final:")
-    # display(K)
-    # display(size(K))
-    # println()
+    return K
+end
+
+function *( w::Matrix{<:numberTypes}, S::types)
+    element = deepcopy(S[1])
+    type = typeof(element) 
+    K = Vector{type}([element])
+    T = toNumberMatrix(S)
+    T = w * S
+    s = size(T)[2]
+    for i=1:s
+        for j=1:size(T)[1]
+            K[i][j] = T[j,i]
+        end
+        if( i < s)
+            push!(K, deepcopy(element))
+        end
+    end
     return K
 end
 

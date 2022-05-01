@@ -20,7 +20,6 @@
         # @test convex_combination([Point2D(1.0, 2.0), Point2D(4.0, 8.0) ], 0.5) == [Point2D(1.0, 2.0), Point2D(2.5, 5), Point2D(4.0, 8.0)]
         # @test toNumberVector(Point2D(1.0, 2.0)) == 1.0, 2.0
         # @test toNumberMatrix([Point2D(1.0, 2.0), Point2D( 4.0, 5.0) ]) == [1.0 4.0; 2.0 5.0]
-        @test ([ 1.0 0.0; 0.0 -1.0] * Point2D(1.0, 2.0) ==  Point2D(1.0, -2.0))
         # @test ([ Point2D(1.0, 2.0), Point2D(4.0, 5.0) ]) * [ 1.0 0.0; 0.0 1.0] ==  [ Point2D(1.0, 2.0), Point2D(4.0, 5.0) ]
         # @test ([ Point2D(1.0, 2.0), Point2D(4.0, 5.0) ]) * [ 2.0, 3.0] ==  Point2D([14.0, 19.0])
         # @test ([ Point2D(1.0, 2.0), Point2D( 4.0, 5.0) ]) * [ 2.0 3.0; 4.0 5.0 ] == [ Point2D(18.0, 24.0), Point2D( 23.0, 31.0) ]

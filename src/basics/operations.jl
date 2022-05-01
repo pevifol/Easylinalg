@@ -16,15 +16,7 @@ function convex_combination(B,increment)
     x=1:-increment:0
     y=0:increment:1
     C=[x'; y']
-    # println("B:")
-    # display(B)
-    # display(size(B))
-    # println("\nC:")
-    # display(C)
-    # display(size(C))
-    # println()
     A = B * C
-    # display(A)
     return A
 end
 
@@ -58,23 +50,6 @@ function *( S::Vector{<:types}, w::Matrix{<:numberTypes})
     return K
 end
 
-function *( w::Matrix{<:numberTypes}, S::types)
-    element = deepcopy(S[1])
-    type = typeof(element) 
-    K = Vector{type}([element])
-    T = toNumberMatrix(S)
-    T = w * S
-    s = size(T)[2]
-    for i=1:s
-        for j=1:size(T)[1]
-            K[i][j] = T[j,i]
-        end
-        if( i < s)
-            push!(K, deepcopy(element))
-        end
-    end
-    return K
-end
 
 function *( S::Vector{<:Image}, w::Matrix{<:Float64})
     T = permutedims(hcat(S)) * w

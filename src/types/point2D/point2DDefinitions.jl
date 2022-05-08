@@ -1,11 +1,15 @@
-struct Point2D <: AbstractVector{Number}
-    x
-    y
+
+mutable struct Point2D <: AbstractVector{Number}
+    x::Number
+    y::Number
 end
 
+numberTypes = Union{Integer, Float64}
 begin 
     import Base: +,*,-,^,/,convert,promote_rule,size,reshape,promote,zero,one,iterate,length,abs2,copy,adjoint,vect, promote_typeof
-    
+
+    Point2D(v::Vector{<:numberTypes}) = size(v)[1] == 2 ? Point2D(v[1],v[2]) : error("Point2D can only have size 2")
+
     # addition rule 
     +(a::Point2D,b::Point2D) = Point2D(a.x+b.x, a.y+b.y)
     -(a::Point2D,b::Point2D) =  Point2D(a.x-b.x, a.y-b.y)

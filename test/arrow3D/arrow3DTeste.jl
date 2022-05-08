@@ -16,15 +16,14 @@
         @test_throws ErrorException Arrow3D(1.0, 2.0, 3)[4]
         @test_throws ErrorException Arrow3D(1.0, 2.0, 3)[4] = 3.0
     end;
-    # @testset "EasyLinalg" begin
-    #     @test convex_combination( [ Arrow3D(1.0, 2.0), Arrow3D(4.0, 8.0) ], 0.5) == [ Arrow3D(1.0, 2.0), Arrow3D(2.5, 5), Arrow3D(4.0, 8.0) ]
-    #     @test toNumberVector(Arrow3D(1.0, 2.0)) == [1.0, 2.0]
-    #     @test toNumberMatrix( [ Arrow3D(1.0, 2.0), Arrow3D(4.0, 5.0) ] ) == [1.0 4.0; 2.0 5.0]
-    #     @test ([ Arrow3D(1.0, 2.0), Arrow3D(4.0, 5.0) ]) * [ 1.0 0.0; 0.0 1.0] ==  [ Arrow3D(1.0, 2.0), Arrow3D(4.0, 5.0) ]
-    #     @test ([ Arrow3D(1.0, 2.0), Arrow3D(4.0, 5.0) ]) * [ 2.0, 3.0 ] ==  Arrow3D(14.0, 19.0)
-    #     @test ([ Arrow3D(1.0, 2.0), Arrow3D( 4.0, 5.0) ]) * [ 2.0 3.0; 4.0 5.0 ] == [ Arrow3D(18.0, 24.0), Arrow3D( 23.0, 31.0 ) ]
-    #     @test ([ Arrow3D(1.0, 2.0), Arrow3D( 4.0, 5.0) ]) \ (([ Arrow3D(1.0, 2.0), Arrow3D( 4.0, 5.0) ]) * [ 2.0 3.0; 4.0 5.0 ]) == [ 2.0 3.0; 4.0 5.0 ]
-    #     @test ([ Arrow3D(1.0, 2.0), Arrow3D( 4.0, 5.0), Arrow3D(7.0, 8.0) ]) \ (([ Arrow3D(1.0, 2.0), Arrow3D( 4.0, 5.0), Arrow3D( 7.0, 8.0) ]) * [ 2.0 3.0; 4.0 5.0; 6.0 7.0]) ≈ [ 2.0 3.0; 4.0 5.0; 6.0 7.0]
-    # end;
+    @testset "EasyLinalg" begin
+        @test convex_combination( [ Arrow3D(1.0, 2.0, 3.0), Arrow3D(3.0, 6.0, 9.0 ) ], 0.5) == [ Arrow3D(1.0, 2.0, 3.0), Arrow3D(2.0, 4.0, 6.0 ), Arrow3D(3.0, 6.0, 9.0 ) ]
+        @test toNumberVector(Arrow3D(1.0, 2.0, 3.0)) == [1.0, 2.0, 3.0]
+        @test toNumberMatrix( [ Arrow3D(1.0, 2.0, 3.0), Arrow3D(3.0, 6.0, 9.0) ] ) == [1.0 3.0; 2.0 6.0; 3.0 9.0]
+        @test ([ Arrow3D(1.0, 2.0, 3.0), Arrow3D(3.0, 6.0, 9.0 )  ]) * [ 1.0 0.0; 0.0 1.0] ==  [ Arrow3D(1.0, 2.0, 3.0), Arrow3D(3.0, 6.0, 9.0 )  ]
+        @test ([ Arrow3D(1.0, 2.0, 3.0), Arrow3D(3.0, 6.0, 9.0 )  ]) * [ 2.0, 3.0 ] ==  Arrow3D(11.0, 22.0, 33.0)
+        @test ([ Arrow3D(1.0, 2.0, 3.0), Arrow3D(3.0, 6.0, 9.0 )  ]) * [ 2.0 3.0; 4.0 5.0 ] == [ Arrow3D(14.0, 28.0, 42.0), Arrow3D(18.0, 36.0, 54.0) ]
+        @test ([ Arrow3D(1.0, 2.0, 3.0), Arrow3D(3.0, 6.0, 9.0 )  ]) \ (([ Arrow3D(1.0, 2.0, 3.0), Arrow3D(3.0, 6.0, 9.0 ) ]) * [ 2.0 3.0; 4.0 5.0 ]) ≈ [ 1.4 1.8; 4.2 5.4 ]
+    end;
 end;    
 

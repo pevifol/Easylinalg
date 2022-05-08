@@ -9,6 +9,7 @@ module EasyLinalg
     include(joinpath("types", "arrow3D", "arrow3DDefinitions.jl"))
     include(joinpath("types", "image", "imageDefinitions.jl"))
     include(joinpath("basics", "operations.jl"))
+    include(joinpath("basics", "draws.jl"))
 
     export Draw
     export Zero

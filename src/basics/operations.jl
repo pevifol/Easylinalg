@@ -61,10 +61,36 @@ function *( S::types, w::Matrix{<:numberTypes})
 end
 
 
-function *( S::Vector{<:Image}, w::Matrix{<:Float64})
-    T = permutedims(hcat(S)) * w
-    return vec(permutedims(T))
+function *( S::Image, w::Matrix{<:numberTypes})
+    img = ToNativeImage(S)
+    s = permutedims(collect(size(img))) * w
+    sf = Tuple(Int.(permutedims(abs.(s))))
+    e = fill(RGB(0,0,0), sf)
+    for i in CartesianIndices(img)
+        newIndex = [i[1] i[2]] * w
+        x = (newIndex[1] + sf[1]) % sf[1] + 1
+        y = (newIndex[2] + sf[2]) % sf[2] + 1
+        idx = CartesianIndex(Int(x), Int(y))
+        e[idx] = img[i]
+    end
+    return Image(e)
 end
+
+function *( S::Vector{<:Image}, w::Matrix{<:numberTypes})
+    T = ToNativeImage.(S)
+    T = permutedims(hcat(T)) * w
+    K = Image.(T)
+    return vec(permutedims(K))
+end
+
+function *( S::Vector{<:Image}, w::Vector{<:numberTypes})
+    T = ToNativeImage.(S)
+    T = permutedims(hcat(T)) * w
+    K = Image.(T)
+    return vec(permutedims(K))
+end
+
+
 
 
 
@@ -91,24 +117,3 @@ function Base.:\(S::Vector{<:types}, W::Vector{<:types})
     return K\J
 end
 
-
-
-function toNativeVector(S::Vector{<:Image})
-    K = Vector{Matrix{RGB{N0f8}}}()
-    for j=1:size(S)[1]
-        native_img = ToNativeImage(S[j])
-        push!(K, native_img)
-    end
-    return permutedims(hcat(K))
-end
-
-function *( S::Vector{<:Image}, w::Matrix{<:Float64})
-    ret = Vector{Image}()
-    K = toNativeVector(S)
-    K = K * w 
-    for j=1:size(K)[2]
-        img = Image(K[j])
-        push!(ret, img)
-    end
-    return ret
-end

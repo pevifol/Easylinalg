@@ -5,15 +5,6 @@ struct Image <:AbstractVector{Vector{RGB}}
     I
 end
 
-function draw(A::Image)
-    display(ToNativeImage(A))
-end
-
-function draw(S::Vector{<:Image})
-    K = toNativeVector(S)
-    display(K)
-end
-
 begin 
     import Base: +,*,-,^,/,convert,promote_rule,size,reshape,promote,zero,one,iterate,length,abs2,copy,adjoint,vect, promote_typeof
     
@@ -44,10 +35,10 @@ begin
     -(x::Image,y::Image) =  Image(x.I - y.I)
 
     # multiplying by scalar
-    *(y::Real,x::Image) = Image(x.I * y)
-    *(x::Image,y::Real) = *(y::Real,x::Image)
+    *(y::Number,x::Image) = Image(x.I * y)
+    *(x::Image,y::Real) = *(y::Number,x::Image)
     
-    /(y::Real,x::Image) = Image(x.I / y)
+    /(y::Number,x::Image) = Image(x.I / y)
 
     
     size(x::Image) = size(x.I)

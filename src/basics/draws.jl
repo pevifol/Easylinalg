@@ -8,11 +8,14 @@ include(joinpath("..", "types", "Image", "ImageDefinitions.jl"))
 
 types = Union{Signal, Point2D, Point3D, Arrow2D, Arrow3D}
 
-function Draw(A::types, separate = false)
-    return Draw([A], separate)
+function Draw(A::types, clear = true, separate = false)
+    return Draw([A], clear, separate)
 end
 
-function Draw(A::Vector{Arrow2D}, separate = false)
+function Draw(A::Vector{Arrow2D}, clear = true, separate = false)
+    if(clear)
+        plot()
+    end
     m=size(A)[1]
     plotsX = []
     plotsY = []
@@ -34,7 +37,10 @@ function Draw(A::Vector{Arrow2D}, separate = false)
 end
 
 
-function Draw(A::Vector{Arrow3D}, separate = false)
+function Draw(A::Vector{Arrow3D}, clear = true, separate = false)
+    if(clear)
+        plot()
+    end
     m=size(A)[1]
     plotsX = []
     plotsY = []
@@ -57,7 +63,10 @@ function Draw(A::Vector{Arrow3D}, separate = false)
 
 end
 
-function Draw(A::Vector{Point2D}, separate = false)
+function Draw(A::Vector{Point2D}, clear = true, separate = false)
+    if(clear)
+        plot()
+    end
     m=size(A)[1]
     plotsX = []
     plotsY = []
@@ -79,7 +88,10 @@ function Draw(A::Vector{Point2D}, separate = false)
 end
 
 
-function Draw(A::Vector{Point3D}, separate = false)
+function Draw(A::Vector{Point3D}, clear = true, separate = false)
+    if(clear)
+        plot()
+    end
     m=size(A)[1]
     plotsX = []
     plotsY = []
@@ -102,7 +114,10 @@ function Draw(A::Vector{Point3D}, separate = false)
 
 end
 
-function Draw(A::Vector{Signal}, separate = false)
+function Draw(A::Vector{Signal}, clear = true, separate = false)
+    if(clear)
+        plot()
+    end
     m=size(A)[1]
     plotsX = []
     plotsY = []

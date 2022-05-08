@@ -17,7 +17,7 @@ using Images
     end;
     @testset "EasyLinalg" begin
         @test convex_combination([Image("bola.jpg"), Image("quadrado.jpg")], 0.5) == [Image("bola.jpg"), Image("bola.jpg")*0.5 + Image("quadrado.jpg")*0.5, Image("quadrado.jpg")]
-        # @test (Image("quadrado.jpg")) * [ 1.0 0.0; 0.0 -1.0] == Image("quadrado.jpg")
+        @test typeof((Image("quadrado.jpg")) * [ 1.0 0.0; 0.0 -1.0]) == Image
         @test ([ Image("bola.jpg"), Image("quadrado.jpg") ]) * [ 1.0 0.0; 0.0 1.0] ==  [ Image("bola.jpg"), Image("quadrado.jpg") ]
         @test  typeof(([ Image("bola.jpg"), Image("quadrado.jpg") ]) * [ 0.1, 0.2]) == Vector{Image}
     end;

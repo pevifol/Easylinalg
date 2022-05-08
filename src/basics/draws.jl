@@ -139,3 +139,12 @@ function Draw(A::Vector{Signal}, clear = true, separate = false)
     return plot!(plotsX,plotsY, layout = (size(plotsY)[1], 1))
 
 end
+
+function draw(A::Image)
+    display(ToNativeImage(A))
+end
+
+function draw(S::Vector{<:Image})  
+    K = toNativeVector(S)
+    display(K)
+end

@@ -50,6 +50,16 @@ function *( S::Vector{<:types}, w::Matrix{<:numberTypes})
     return K
 end
 
+function *( S::types, w::Matrix{<:numberTypes})
+    T = toNumberVector(S)'
+    T = T * w
+    R = deepcopy(S)
+    for i=1:size(T)[2]
+        R[i] = T[i]
+    end
+    return R
+end
+
 
 function *( S::Vector{<:Image}, w::Matrix{<:Float64})
     T = permutedims(hcat(S)) * w

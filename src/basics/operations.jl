@@ -73,8 +73,7 @@ function *( S::Image, w::Matrix{<:numberTypes})
         idx = CartesianIndex(Int(x), Int(y))
         e[idx] = img[i]
     end
-    r = Image(deepcopy(e))
-    return r
+    return Image(e)
 end
 
 function *( S::Vector{<:Image}, w::Matrix{<:numberTypes})

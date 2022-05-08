@@ -140,11 +140,11 @@ function Draw(A::Vector{Signal}, clear = true, separate = false)
 
 end
 
-function draw(A::Image)
+function Draw(A::Image)
     display(ToNativeImage(A))
 end
 
-function draw(S::Vector{<:Image})  
+function Draw(S::Vector{<:Image})  
     K = toNativeVector(S)
     display(K)
 end

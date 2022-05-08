@@ -66,8 +66,6 @@ function *( S::Image, w::Matrix{<:numberTypes})
     s = permutedims(collect(size(img))) * w
     sf = Tuple(Int.(permutedims(abs.(s))))
     e = fill(RGB(0.0,0.0,0.0), sf)
-    println(typeof(img))
-    println(typeof(e))
     for i in CartesianIndices(img)
         newIndex = [i[1] i[2]] * w
         x = (newIndex[1] + sf[1]) % sf[1] + 1
@@ -75,8 +73,8 @@ function *( S::Image, w::Matrix{<:numberTypes})
         idx = CartesianIndex(Int(x), Int(y))
         e[idx] = img[i]
     end
-
-    return Image(e)
+    r = Image(deepcopy(e))
+    return r
 end
 
 function *( S::Vector{<:Image}, w::Matrix{<:numberTypes})
